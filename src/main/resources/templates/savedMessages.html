@@ -61,14 +61,14 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Content</th>
-        <th>Action</th>
+        <th>No.</th>
+        <th>Message Details</th>
+        <th>Available Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="message : ${savedMessages}">
-        <td th:text="${message.id}">1</td>
+    <tr th:each="message, status : ${savedMessages}">
+        <td th:text="${status.index + 1}">1</td>
         <td th:text="${message.content}">Sample message content here.</td>
 
         <td>
