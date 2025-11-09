@@ -69,7 +69,7 @@ public class ServiceController {
     // Using @GetMapping for easy hyperlinking in Thymeleaf.
     @DeleteMapping("/api/delete/{id}")
     public String deleteMessage(@PathVariable Long id) {
-        //messagingServices.deleteMessage(id);
+        messagingServices.deleteMessage(id);
         return "redirect:/api/messages";
     }
 }

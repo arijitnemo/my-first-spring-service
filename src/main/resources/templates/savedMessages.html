@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>MOMO Service</title>
+    <title>MOMO Services Private Limited</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         h2 { border-bottom: 2px solid #ccc; padding-bottom: 10px; }
@@ -13,10 +13,40 @@
         table { width: 90%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #f2f2f2; }
+
+        /* Styles for the actions column */
+        .action-form {
+            display: inline; /* Keep the form on the same line */
+            margin-right: 20px; /* Spacing between buttons */
+        }
+        .action-button {
+            background: none;
+            border: none;
+            color: #007bff; /* A color for edit, similar to link but button-like */
+            cursor: pointer;
+            padding: 0;
+            font-family: Arial, sans-serif; /* Inherit font */
+            font-size: inherit; /* Inherit font size */
+        }
+        .delete-button {
+            background: none;
+            border: none;
+            color: #cc9977;
+            cursor: pointer;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            font-size: inherit;
+        }
     </style>
+    <script>
+        // Simple confirmation before delete the entry
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this entry ?");
+        }
+    </script>
 </head>
 <body>
-
+<h2>MOMO Service: </h2>
 <form th:action="@{/api/index}" method="post">
     <label for="userName">Enter Name to Save:</label>
     <input type="text" id="userName" name="name" required placeholder="e.g., Arijit Bose">
@@ -33,7 +63,8 @@
     <tr>
         <th>ID</th>
         <th>Content</th>
-        <th>Action</th> </tr>
+        <th>Action</th>
+    </tr>
     </thead>
     <tbody>
     <tr th:each="message : ${savedMessages}">
@@ -41,7 +72,13 @@
         <td th:text="${message.content}">Sample message content here.</td>
 
         <td>
-            <a th:href="@{/api/edit/{id}(id=${message.id})}">Edit This Entry</a>
+            <form th:action="@{/api/edit/{id}(id=${message.id})}" method="get" class="action-form">
+                <button type="submit" class="action-button">Edit This Entry</button>
+            </form>
+            <form th:action="@{/api/delete/{id}(id=${message.id})}" method="post" class="action-form" onsubmit="return confirmDelete()">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="delete-button">Delete This Entry</button>
+            </form>
         </td>
     </tr>
     </tbody>

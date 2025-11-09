@@ -63,4 +63,10 @@ public class MessagingServices {
         // 4. Save the entity (JPA uses the existing ID to perform an UPDATE instead of an INSERT)
         messageRepository.save(message);
     }
+
+    // DELETE: Deletes a message by its ID
+    public void deleteMessage(Long id) {
+        // Spring Data JPA's JpaRepository provides deleteById(id) automatically
+        messageRepository.deleteById(id);
+    }
 }
