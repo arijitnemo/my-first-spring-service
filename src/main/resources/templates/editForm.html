@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Message</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { padding: 20px; border: 1px solid #ccc; width: 400px; }
+        label, input, button { display: block; margin-bottom: 10px; }
+        input[type="text"] { width: 90%; padding: 8px; }
+    </style>
+</head>
+<body>
+
+<h2>Edit Message ID: <span th:text="${messageToEdit.id}">1</span></h2>
+
+<form th:action="@{/api/update}" method="post">
+
+    <input type="hidden" name="_method" value="PATCH" />
+
+    <input type="hidden" name="id" th:value="${messageToEdit.id}">
+
+    <label for="nameInput">Current Content:</label>
+    <p th:text="${messageToEdit.content}" style="font-style: italic;"></p>
+
+    <label for="nameInput">Enter New Name:</label>
+    <input type="text" id="nameInput" name="name" required placeholder="Enter the new name for this entry:..">
+
+    <button type="submit">Update Now</button>
+</form>
+
+<p><a th:href="@{/api/messages}">Back to Original Message List</a></p>
+
+</body>
+</html>

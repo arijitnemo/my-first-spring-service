@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MOMO Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+        form { margin-bottom: 30px; padding: 15px; border: 1px solid #eee; background-color: #f9f9f9; }
+        label { font-weight: bold; margin-right: 10px; }
+        input[type="text"] { padding: 8px; border: 1px solid #ccc; width: 300px; }
+        button[type="submit"] { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        table { width: 90%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<form th:action="@{/api/index}" method="post">
+    <label for="userName">Enter Name to Save:</label>
+    <input type="text" id="userName" name="name" required placeholder="e.g., Arijit Bose">
+
+    <button type="submit">Save New Message</button>
+</form>
+
+<h2>Saved Messages: </h2>
+
+<hr/>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Content</th>
+        <th>Action</th> </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${savedMessages}">
+        <td th:text="${message.id}">1</td>
+        <td th:text="${message.content}">Sample message content here.</td>
+
+        <td>
+            <a th:href="@{/api/edit/{id}(id=${message.id})}">Edit This Entry</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
