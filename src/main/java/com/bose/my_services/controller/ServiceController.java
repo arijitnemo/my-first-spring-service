@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor // Lombok will create a constructor for final fields
+
+// This class is a REST controller that handles HTTP requests
 public class ServiceController {
 
     // Dependency Injection: Spring will automatically provide an instance
@@ -16,11 +18,11 @@ public class ServiceController {
     private final GreetingService greetingService;
 
     @GetMapping("/api/index")
-    public String getGreeting(
+    public Greeting getGreeting(
             @RequestParam(value = "name", defaultValue = "MOMO ") String name
     ) {
         // Delegation: The Controller delegates the actual business work to the service package
-        // return greetingService.generateGreeting(name);
-        return String.format("Hello, %s! Thanks for connecting to the business service.", name);
+        return greetingService.generateGreeting(name);
+        //return String.format("Hello, %s! Thanks for connecting to the business service.", name);
     }
 }
