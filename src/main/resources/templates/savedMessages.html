@@ -9,33 +9,35 @@
         form { margin-bottom: 30px; padding: 15px; border: 1px solid #eee; background-color: #f9f9f9; }
         label { font-weight: bold; margin-right: 10px; }
         input[type="text"] { padding: 8px; border: 1px solid #ccc; width: 300px; }
-        button[type="submit"] { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+
+        /* Unified Button Styles */
+        .primary-button, .action-button, .delete-button {
+            padding: 8px 15px; /* Consistent padding/size */
+            color: white; /* White text for all */
+            border: none;
+            cursor: pointer;
+            font-size: 14px; /* Ensure similar font size */
+            margin-left: 5px; /* Slight spacing if needed */
+        }
+
+        /* Specific Colors */
+        .primary-button {
+            background-color: #007bff; /* Blue for Add/Primary */
+        }
+        .action-button {
+            background-color: #28a745; /* Green for Edit/Success */
+        }
+        .delete-button {
+            background-color: #dc3545; /* Red for Delete/Danger */
+        }
+
+        /* Table and layout styles */
         table { width: 90%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #f2f2f2; }
-
-        /* Styles for the actions column */
         .action-form {
-            display: inline; /* Keep the form on the same line */
-            margin-right: 20px; /* Spacing between buttons */
-        }
-        .action-button {
-            background: none;
-            border: none;
-            color: #007bff; /* A color for edit, similar to link but button-like */
-            cursor: pointer;
-            padding: 0;
-            font-family: Arial, sans-serif; /* Inherit font */
-            font-size: inherit; /* Inherit font size */
-        }
-        .delete-button {
-            background: none;
-            border: none;
-            color: #cc9977;
-            cursor: pointer;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            font-size: inherit;
+            display: inline-block; /* Use inline-block for form alignment */
+            margin-right: 5px; /* Spacing between buttons */
         }
     </style>
     <script>
@@ -48,10 +50,10 @@
 <body>
 <h2>MOMO Service: </h2>
 <form th:action="@{/api/index}" method="post">
-    <label for="userName">Enter Name to Save:</label>
+    <label for="userName">Enter The New Entry :</label>
     <input type="text" id="userName" name="name" required placeholder="e.g., Arijit Bose">
 
-    <button type="submit">Save New Message</button>
+    <button type="submit" class="primary-button">Add This Entry</button>
 </form>
 
 <h2>Saved Messages: </h2>
