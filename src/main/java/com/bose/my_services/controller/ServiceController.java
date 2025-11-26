@@ -57,7 +57,7 @@ public class ServiceController {
                 aiResponseText = "ERROR: GEMINI_API_KEY environment variable is not set. Please set your API key from Google AI Studio.";
             } else {
                 try {
-                    // 1. Instantiate the Client (API Key Method)
+                    // 1. Instantiate the Client (automatically get KEy from environment variable)
                     Client client = new Client();
 
                     // 2. Generate content using the nested 'models' service
