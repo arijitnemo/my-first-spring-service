@@ -20,6 +20,15 @@ http://localhost:8080/h2-console
 - Java 21 or higher
 - Maven 3.8+
 - Spring Boot 3.5.7+
+- Dedicated Google GenAI SDK (API Key method) dependency below:
+<dependency>
+    <groupId>com.google.genai</groupId>
+    <artifactId>google-genai</artifactId>
+    <version>1.28.0</version>
+</dependency>
+
+- get GEMINI_API_KEY from - https://aistudio.google.com/app/api-keys
+- And set this key in Run config ENVIRONMENT VARIABLE
 
 ## Setup
 1. Clone the repository:
